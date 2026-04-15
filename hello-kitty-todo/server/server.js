@@ -23,6 +23,9 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
+app.get('/', (req, res) => {
+  res.send('🎀 Hello Kitty Backend is alive and purring! 🎀');
+});
 
 // Get all tasks
 app.get('/api/tasks', async (req, res) => {
