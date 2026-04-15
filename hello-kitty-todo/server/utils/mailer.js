@@ -30,8 +30,10 @@ export const sendTaskNotification = async (emails, taskTitle, taskId) => {
   }
 
   const transporter = createTransporter();
-  const localIp = getLocalIp();
-  const taskLink = `http://${localIp}:5173/?taskId=${taskId}`;
+  const frontendUrl = process.env.FRONTEND_URL || `http://${getLocalIp()}:5173`;
+  const taskLink = `${frontendUrl.replace(/\/$/, '')}/?taskId=${taskId}`;
+
+  console.log(`🔗 Generating task link: ${taskLink}`);
 
   const mailOptions = {
     from: `"Hello Kitty Todo" <${process.env.EMAIL_USER}>`,
@@ -52,10 +54,10 @@ export const sendTaskNotification = async (emails, taskTitle, taskId) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log(`Email successfully sent: ${info.messageId}`);
+    console.log(`✅ Email successfully sent to ${emails.join(', ')}. Message ID: ${info.messageId}`);
     return true;
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("❌ Error sending email from Nodemailer:", error);
     return false;
   }
 };

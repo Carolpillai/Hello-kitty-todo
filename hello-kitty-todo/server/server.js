@@ -55,8 +55,9 @@ app.post('/api/tasks', async (req, res) => {
       // Find the actual email formats only, avoiding basic names
       const validEmails = savedTask.collaborators.filter(c => c.includes('@'));
       if (validEmails.length > 0) {
-        // Fire off without awaiting, so it doesn't block UI response
-        sendTaskNotification(validEmails, savedTask.title, savedTask.id);
+        console.log('📬 Attempting to send notifications to:', validEmails);
+        // Await the mailer so we can see any errors properly in the logs
+        await sendTaskNotification(validEmails, savedTask.title, savedTask.id);
       }
     }
 

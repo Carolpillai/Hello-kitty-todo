@@ -11,7 +11,8 @@ import NotesWidget from './components/NotesWidget';
 import { initialData } from './data/initialData';
 
 // Support production environment variables with a fallback for local development
-const API_URL = import.meta.env.VITE_API_URL || "http://" + window.location.hostname + ":5000/api/tasks";
+const BASE_URL = import.meta.env.VITE_API_URL || ("http://" + window.location.hostname + ":5000");
+const API_URL = BASE_URL.endsWith('/api/tasks') ? BASE_URL : `${BASE_URL.replace(/\/$/, '')}/api/tasks`;
 
 function App() {
   const [data, setData] = useState({
