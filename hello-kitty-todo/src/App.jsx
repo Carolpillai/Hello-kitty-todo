@@ -7,6 +7,7 @@ import TaskList from './components/TaskList';
 import KanbanBoard from './components/KanbanBoard';
 import TaskModal from './components/TaskModal';
 import LoginScreen from './components/LoginScreen';
+import NotesWidget from './components/NotesWidget';
 import { initialData } from './data/initialData';
 
 // Using window.location.hostname ensures that if you access from your phone IP, it fetches from your computer's IP instead of the phone's localhost
@@ -273,6 +274,8 @@ function App() {
           currentUser={currentUser}
         />
       )}
+
+      <NotesWidget />
     </div>
   );
 }
