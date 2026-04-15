@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --hk-bg: #ffeaf3;
+  --hk-white: #ffffff;
+  --hk-primary: #ff4d85;
+  --hk-secondary: #ff8fb3;
+  --hk-text: #594a4e;
+  --hk-text-light: #8c7a7e;
+  --hk-border: #ffc2d4;
+  --hk-shadow: rgba(255, 77, 133, 0.15);
+  
+  --priority-low: #82ddf0;
+  --priority-medium: #ffd166;
+  --priority-high: #ff6b6b;
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--hk-bg);
+  color: var(--hk-text);
+  line-height: 1.5;
+  min-height: 100vh;
+  /* New Hello Kitty background image */
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: var(--transition);
+}
+
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hk-border);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hk-secondary);
+}
+
+/* Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  border: 4px solid var(--hk-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px var(--hk-shadow);
+}
+
+.hk-button {
+  background-color: var(--hk-primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid transparent;
+}
+
+.hk-button:hover {
+  background-color: white;
+  color: var(--hk-primary);
+  border-color: var(--hk-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--hk-shadow);
+}
+
+.hk-button-outline {
+  background-color: transparent;
+  color: var(--hk-primary);
+  border: 2px solid var(--hk-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hk-button-outline:hover {
+  background-color: var(--hk-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--hk-shadow);
+}
+
+.hk-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--hk-border);
+  background: white;
+  color: var(--hk-text);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.hk-input:focus {
+  border-color: var(--hk-primary);
+  box-shadow: 0 0 0 3px rgba(255, 77, 133, 0.2);
+}
+
+.layout-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animations */
+@keyframes pop-in {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
