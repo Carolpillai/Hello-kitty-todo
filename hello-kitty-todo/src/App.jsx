@@ -10,8 +10,8 @@ import LoginScreen from './components/LoginScreen';
 import NotesWidget from './components/NotesWidget';
 import { initialData } from './data/initialData';
 
-// Using window.location.hostname ensures that if you access from your phone IP, it fetches from your computer's IP instead of the phone's localhost
-const API_URL = `http://${window.location.hostname}:5000/api/tasks`;
+// Support production environment variables with a fallback for local development
+const API_URL = import.meta.env.VITE_API_URL || "http://" + window.location.hostname + ":5000/api/tasks";
 
 function App() {
   const [data, setData] = useState({
